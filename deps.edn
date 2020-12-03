@@ -1,0 +1,5 @@
+{:paths {"src" "resources"}
+ :aliases
+ {:hashp
+  {:extra-deps {hashp/hashp {:mvn/version "0.2.0"}}
+   :main-opts ["-e" "(require,'hashp.core)" "-r"]}}}
