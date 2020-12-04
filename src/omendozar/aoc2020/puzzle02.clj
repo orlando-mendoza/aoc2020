@@ -18,7 +18,7 @@
        str/split-lines
        (map #(parse-line %))))
 
-(defn valid-password?
+(defn valid-password-part-1?
   [s]
   (let [_ (println s)
         freq (frequencies (get s 3))
@@ -30,10 +30,19 @@
       true
       false)))
 
+(defn valid-password-part-2
+  [s]
+  (let [_ (println s)
+        letter (char (first (.getBytes (get s 2))))
+        pos1 (get s 0)
+        pos2 (get s 1)
+        ;; TODO: Check if IndexOf letter is equal to pos1 or pos2 (not both)
+        ]))
+
 (defn get-valid-passwords
   [vector-of-vectors]
   (for [v vector-of-vectors
-        :when (valid-password? v)]
+        :when (valid-password-part-1? v)]
     (into [] v)))
 
 (defn main
@@ -48,6 +57,11 @@
 
 (main input)
 ;; => 434;
+
+;; ------------------------------------------------------------
+;; PART TWO
+
+
 
 (comment
   (def s [1 3 "a" "abcde"])
