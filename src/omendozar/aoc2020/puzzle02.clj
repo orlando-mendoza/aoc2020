@@ -30,34 +30,42 @@
       true
       false)))
 
-(defn list-of-passwords
+(defn get-valid-passwords
   [vector-of-vectors]
-  (let [counter 0]
-    (for [v vector-of-vectors
-          :when (valid-password? v)]
-      (inc counter))))
+  (for [v vector-of-vectors
+        :when (valid-password? v)]
+    (into [] v)))
 
-(->> sample-input
-    serialize-input
-    (map #(apply valid-password? %)))
+(defn main
+  [input]
+  (->> input
+       serialize-input
+       get-valid-passwords
+       count))
 
 (def input
-  (line-seq (clojure.java.io/reader "resources/puzzle02_input.txt")))
+  (str (slurp (clojure.java.io/reader "resources/puzzle02_input.txt"))))
+
+(main input)
+;; => 434;
 
 (comment
- (def s [1 3 "a" "abcde"])
- (valid-password? s )
- (valid-password? [1 3 "a" "abcdesaaa"] )
- (def s (serialize-input sample-input))
- (list-of-passwords s)
+  (def s [1 3 "a" "abcde"])
+  (valid-password? s )
+  (valid-password? [1 3 "a" "abcdesaaa"] )
+  (def s (serialize-input sample-input))
+  (count (list-of-passwords s))
 
- (for [v '([1 3 "a" "abcde"] [1 3 "b" "cdefg"] [2 9 "c" "ccccccccc"])
-       :when (valid-password? v)]
-   (into [] v))
-;; => (2) ;; => ([2 9 "c" "ccccccccc"])
+  (def ss (serialize-input input))
+  (count (list-of-passwords ss))
 
- (for [x '([:a 1] [:b 2] [:c 0]) :when (= (get x 1) 0) ]  x)
- ;; => ([:c 0])
+  (for [v '([1 3 "a" "abcde"] [1 3 "b" "cdefg"] [2 9 "c" "ccccccccc"])
+        :when (valid-password? v)]
+    (into [] v))
+  ;; => (2) ;; => ([2 9 "c" "ccccccccc"])
+
+  (for [x '([:a 1] [:b 2] [:c 0]) :when (= (get x 1) 0) ]  x)
+  ;; => ([:c 0])
 
   (def pm (map valid-password? '([1 3 "a" "abcde"] [1 3 "b" "cdefg"] [2 9 "c" "ccccccccc"])))
   (filter even? [1 2 3 4])
