@@ -60,10 +60,10 @@
      (apply *))
 ;; => 1260601650
 
+(mapv identity [[:a 1] [:b 2]])
+
+      (comment
 
 
-(comment
-
-
-  
-  )
+        
+        )
