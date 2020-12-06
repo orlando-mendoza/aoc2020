@@ -58,6 +58,8 @@
             (filter #{\#})
             count))
      (apply *))
+;; => 1260601650
+
 
 
 (comment
