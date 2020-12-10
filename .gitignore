@@ -13,3 +13,7 @@ pom.xml.asc
 .nrepl-port
 .cpcache/
 /.idea/
+aoc2020.iml
+.calva/output-window/output.calva-repl
+.calva/output-window/.clj-kondo/config.edn
+.calva/output-window/.clj-kondo/.cache/2020.11.07/lock
