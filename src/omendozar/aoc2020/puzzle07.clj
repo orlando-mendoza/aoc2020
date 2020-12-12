@@ -43,6 +43,8 @@ vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.")
         (map parse-line)
         (apply merge))))
 
+;; ------------------------------------------------------------
+;; PART ONE
 ;; 1. How many bag colors can eventually contain at least one shiny gold bag?
 
 (defn sub-contains?
@@ -63,7 +65,23 @@ vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.")
 ;; => 161
 
 
+;; ------------------------------------------------------------
+;; PART TWO
+;; How many individual bags are required inside your single shiny gold bag?
 
+(defn sub-count
+  [container]
+  (->> container
+       database
+       (reduce
+        (fn [temp [n color]]
+          (+ temp n (* n (sub-count color))))
+        0)))
+
+(sub-count "shiny gold")
+;; => 30899
+
+;; ----------------------- comment -----------------------------
 (comment
   (->> "light red bags contain 1 bright white bag, 2 muted yellow bags."
        (re-seq #"(\w+ \w=)") )
